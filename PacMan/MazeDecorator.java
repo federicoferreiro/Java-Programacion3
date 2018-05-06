@@ -1,22 +1,22 @@
 package PacMan;
 
 public enum MazeDecorator {
-	LEFT ('>'),
-	RIGHT ('<'),
-	UP ('v'),
-	DOWN ('^'),
-	ALIVE ('*'),
-	EAT (' ');
+	IZQUIERDA ('>'),
+	DERECHA ('<'),
+	ARRIBA ('v'),
+	ABAJO ('^'),
+	VIVO ('*'),
+	COMIDO (' ');
 	
-	private Character decoration;
-	private MazeDecorator(Character decoration){
-		this.decoration=decoration;
+	private Character decorar;
+	private MazeDecorator(Character decoracion){
+		this.decorar=decoracion;
 		
 	}
-	public Character getDecoration() {
-		return decoration;
+	public Character getDecoracion() {
+		return decorar;
 	}
-	public void setDecoration(Character decoration) {
-		this.decoration = decoration;
+	public void setDecoracion(Character decoracion) {
+		this.decorar = decoracion;
 	}
 }

@@ -3,168 +3,153 @@ package PacMan;
 
 
 public class Maze {
-	private static final Integer DEFAULT_ROWS = 5;
-	private static final Integer DEFAULT_COLUMNS = 5;
+	private static final Integer FILAS_DEFAULT = 5;
+	private static final Integer COLUMNAS_DEFAULT = 5;
 	
 	
 	
-	private Integer rows;
-	private Integer columns;
-	private Character[][] matrix;
-	private Integer rowActual;
-	private Integer columnActual;
+	private Integer filas;
+	private Integer columnas;
+	private Character[][] matriz;
+	private Integer filaActual;
+	private Integer columnaActual;
 	
 	public Maze (){
-		this(DEFAULT_ROWS, DEFAULT_COLUMNS);
+		this(FILAS_DEFAULT, COLUMNAS_DEFAULT);
 	}
 	
-	public Maze(Integer rows, Integer columns) {
-		this.setRows(rows);
-		this.setColumns(columns);
-		this.setMatrix(new Character[this.getRows()][this.getColumns()]);
-		for (Integer i = 0; i < this.getRows(); i++)
-			for (Integer j = 0; j < this.getColumns(); j++)
-				this.getMatrix()[i][j] = MazeDecorator.ALIVE.getDecoration();
-		this.setRowActual(this.getRows() / 2);
-		this.setColumnActual(this.getColumns() / 2);
-		this.getMatrix()[this.getRowActual()][this.getColumnActual()] = MazeDecorator.UP.getDecoration();
+	public Maze(Integer filas, Integer columnas) {
+		this.setFilas(filas);
+		this.setColumnas(columnas);
+		this.setMatriz(new Character[this.getFilas()][this.getColumnas()]);
+		for (Integer i = 0; i < this.getFilas(); i++)
+			for (Integer j = 0; j < this.getColumnas(); j++)
+				this.getMatriz()[i][j] = MazeDecorator.VIVO.getDecoracion();
+		this.setFilaActual(this.getFilas() / 2);
+		this.setColumnaActual(this.getColumnas() / 2);
+		this.getMatriz()[this.getFilaActual()][this.getColumnaActual()] = MazeDecorator.ARRIBA.getDecoracion();
 	}
 	
-	public Integer getRows() {
-		return this.rows;
+	public Integer getFilas() {
+		return filas;
 	}
 	
-	public void setRows(Integer rows) {
-		this.rows = rows;
+	public void setFilas(Integer filas) {
+		this.filas = filas;
 	}
 	
-	public Integer getColumns() {
-		return this.columns;
+	public Integer getColumnas() {
+		return columnas;
 	}
 	
-	public void setColumns(Integer columns) {
-		this.columns = columns;
+	public void setColumnas(Integer columnas) {
+		this.columnas = columnas;
 	}
 	
-	public Character[][] getMatrix() {
-		return this.matrix;
+	public Character[][] getMatriz() {
+		return matriz;
 	}
 	
-	public void setMatrix(Character[][] matrix) {
-		this.matrix = matrix;
+	public void setMatriz(Character[][] matriz) {
+		this.matriz = matriz;
 	}
 	
-	public Integer getRowActual() {
-		return this.rowActual;
+	public Integer getFilaActual() {
+		return filaActual;
 	}
 	
-	public void setRowActual(Integer rowActual) {
-		this.rowActual = rowActual;
+	public void setFilaActual(Integer filaActual) {
+		this.filaActual = filaActual;
 	}
 	
-	public Integer getColumnActual() {
-		return this.columnActual;
+	public Integer getColumnaActual() {
+		return columnaActual;
 	}
 	
-	public void setColumnActual(Integer columnActual) {
-		this.columnActual = columnActual;
+	public void setColumnaActual(Integer columnaActual) {
+		this.columnaActual = columnaActual;
 	}
 	
-	public Boolean isPacmanAt(Integer row, Integer column) {
-		return this.getRowActual().equals(row) && this.getColumnActual().equals(column);
+	public Boolean dondePacman(Integer fila, Integer columna) {
+		return this.getFilaActual().equals(fila) && this.getColumnaActual().equals(columna);
 	}
 	
-	public Boolean isPacmanLookingDown() {
-		return this.isPacmanLooking(MazeDecorator.DOWN.getDecoration());
+	public Boolean estaMirandoAbajo() {
+		return this.dondeMira(MazeDecorator.ABAJO.getDecoracion());
 	}
 	
-	public Boolean isPacmanLookingUp() {
-		return this.isPacmanLooking(MazeDecorator.UP.getDecoration());
+	public Boolean estaMirandoArriba() {
+		return this.dondeMira(MazeDecorator.ARRIBA.getDecoracion());
 	}
 	
-	public Boolean isPacmanLookingLeft() {
-		return this.isPacmanLooking(MazeDecorator.LEFT.getDecoration());
+	public Boolean estaMirandoIzquierda() {
+		return this.dondeMira(MazeDecorator.IZQUIERDA.getDecoracion());
 	}
 	
-	public Boolean isPacmanLookingRight() {
-		return this.isPacmanLooking(MazeDecorator.RIGHT.getDecoration());
+	public Boolean estaMirandoDerecha() {
+		return this.dondeMira(MazeDecorator.DERECHA.getDecoracion());
 	}
 	
-	private Boolean isPacmanLooking(Character looking) {
-		return this.getMatrix()[this.getRowActual()][this.getColumnActual()].equals(looking);
+	private Boolean dondeMira(Character mira) {
+		return this.getMatriz()[this.getFilaActual()][this.getColumnaActual()].equals(mira);
 	}
 	
-	public Boolean isEmptyAt(Integer row, Integer column) {
-		return this.getMatrix()[row][column].equals(MazeDecorator.EAT.getDecoration());
+	public Boolean estaVacia(Integer fila, Integer columna) {
+		return this.getMatriz()[fila][columna].equals(MazeDecorator.COMIDO.getDecoracion());
 	}
 	
-	public void pacmanDown() {
-		this.pacman(MazeDecorator.DOWN.getDecoration());
+	public void pacmanAbajo() {
+		this.pacman(MazeDecorator.ABAJO.getDecoracion());
 	}
 	
-	public void pacmanUp() {
-		this.pacman(MazeDecorator.UP.getDecoration());
+	public void pacmanArriba() {
+		this.pacman(MazeDecorator.ARRIBA.getDecoracion());
 	}
 	
-	public void pacmanLeft() {
-		this.pacman(MazeDecorator.LEFT.getDecoration());
+	public void pacmanIzquierda() {
+		this.pacman(MazeDecorator.IZQUIERDA.getDecoracion());
 	}
 	
-	public void pacmanRight() {
-		this.pacman(MazeDecorator.RIGHT.getDecoration());
+	public void pacmanDerecha() {
+		this.pacman(MazeDecorator.DERECHA.getDecoracion());
 	}
 	
-	private void pacman(Character looking) {
-		this.getMatrix()[this.getRowActual()][this.getColumnActual()] = looking;
+	private void pacman(Character mira) {
+		this.getMatriz()[this.getFilaActual()][this.getColumnaActual()] = mira;
 	}
 	
-	public void tick() {
-		Integer rowOld = this.getRowActual();
-		Integer columnOld = this.getColumnActual();
-		if (this.isPacmanLookingUp())
-			this.setRowActual((this.isLimit(this.getRowActual(), 0)) ? this.getRows() - 1 : this
-				.getRowActual() - 1);
-		if (this.isPacmanLookingDown())
-			this.setRowActual((this.isLimit(this.getRowActual(), this.getRows() - 1)) ? 0 : this
-				.getRowActual() + 1);
-		if (this.isPacmanLookingLeft())
-			this.setColumnActual((this.isLimit(this.getColumnActual(), 0)) ? this.getColumns() - 1 : this
-				.getColumnActual() - 1);
-		if (this.isPacmanLookingRight())
-			this.setColumnActual((this.isLimit(this.getColumnActual(), this.getColumns() - 1)) ? 0 : this
-				.getColumnActual() + 1);
-		this.getMatrix()[this.getRowActual()][this.getColumnActual()] = this.getMatrix()[rowOld][columnOld];
-		this.getMatrix()[rowOld][columnOld] = MazeDecorator.EAT.getDecoration();
+	public void comiendo() {
+		Integer filaVieja = this.getFilaActual();
+		Integer columnaVieja = this.getColumnaActual();
+		if (this.estaMirandoArriba())
+			this.setFilaActual((this.limite(this.getFilaActual(), 0)) ? this.getFilas() - 1 : this
+				.getFilaActual() - 1);
+		if (this.estaMirandoAbajo())
+			this.setFilaActual((this.limite(this.getFilaActual(), this.getFilas() - 1)) ? 0 : this
+				.getFilaActual() + 1);
+		if (this.estaMirandoIzquierda())
+			this.setColumnaActual((this.limite(this.getColumnaActual(), 0)) ? this.getColumnas() - 1 : this
+				.getColumnaActual() - 1);
+		if (this.estaMirandoDerecha())
+			this.setColumnaActual((this.limite(this.getColumnaActual(), this.getColumnas() - 1)) ? 0 : this
+				.getColumnaActual() + 1);
+		this.getMatriz()[this.getFilaActual()][this.getColumnaActual()] = this.getMatriz()[filaVieja][columnaVieja];
+		this.getMatriz()[filaVieja][columnaVieja] = MazeDecorator.COMIDO.getDecoracion();
 	}
 	
-	private Boolean isLimit(Integer actual, Integer limit) {
-		return actual.equals(limit);
+	private Boolean limite(Integer actual, Integer limite) {
+		return actual.equals(limite);
 	}
 	
-	public void print() {
-		for (Integer i = 0; i < this.getRows(); i++) {
-			for (Integer j = 0; j < this.getColumns(); j++)
-				System.out.print(this.getMatrix()[i][j]);
+	public void imprimir() {
+		for (Integer i = 0; i < this.getFilas(); i++) {
+			for (Integer j = 0; j < this.getColumnas(); j++)
+				System.out.print(this.getMatriz()[i][j]);
 			System.out.println();
 		}
 		System.out.println();
 	}
 	
 	
-	public static void main(String[] args) {
-
-		
-		Maze maze = new Maze();
-		maze.print();
-
-		
-		maze.pacmanUp();
-		maze.tick();
-		maze.print();
-		maze.pacmanLeft();
-		maze.tick();
-		maze.print();
-	
-	}
 	
 }

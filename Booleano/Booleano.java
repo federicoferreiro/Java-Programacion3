@@ -5,20 +5,21 @@ public enum Booleano{
 
 		@Override
 		void or(Booleano b2) {
-			System.out.println("VERDADERO");		
+			System.out.println(this);
 		}
+
 
 		@Override
 		void not() {
-			System.out.println("FALSO");
+			System.out.println(Booleano.FALSO);
 		}
 
 		@Override
 		void and(Booleano b2) {
 			if (b2 == VERDADERO)
-				System.out.println("VERDADERO");
+				System.out.println(this);
 			else
-			System.out.println("FALSO");			
+				System.out.println(Booleano.FALSO);			
 		}
 
 		@Override
@@ -30,9 +31,9 @@ public enum Booleano{
 		@Override
 		void equals(Booleano b2) {
 			if(b2==FALSO)
-				System.out.println("FALSO");
+				System.out.println(Booleano.FALSO);
 			else
-				System.out.println("VERDADERO");
+				System.out.println(this);
 		}
 		
 	},
@@ -41,20 +42,20 @@ public enum Booleano{
 		@Override
 		void or(Booleano b2) {
 			if (b2 == VERDADERO)
-				System.out.println("VERDADERO");
+				System.out.println(Booleano.VERDADERO);
 			else
-			System.out.println("FALSO");
+			System.out.println(this);
 		}
 
 		@Override
 		void not() {
-			System.out.println("VERDADERO");
+			System.out.println(Booleano.VERDADERO);
 		}
 
 		@Override
 		void and(Booleano b2) {
 			// TODO Auto-generated method stub
-			System.out.println("FALSO");
+			System.out.println(this);
 		}
 
 		@Override
@@ -66,9 +67,9 @@ public enum Booleano{
 		@Override
 		void equals(Booleano b2) {
 			if(b2==FALSO)
-				System.out.println("VERDADERO");
+				System.out.println(Booleano.VERDADERO);
 			else
-				System.out.println("FALSO");
+				System.out.println(this);
 		}
 		
 	};
@@ -79,5 +80,14 @@ public enum Booleano{
 	abstract void and(Booleano b2);
 	abstract void xor(Booleano b2);
 	abstract void equals(Booleano b2);
+	
+	private static Object valueOf(Booleano B2) {
+		// TODO Auto-generated method stub
+		
+		if (B2 == VERDADERO)
+			return Booleano.VERDADERO;
+		else
+			return Booleano.FALSO;
+	}
 
 }
